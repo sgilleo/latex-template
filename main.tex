@@ -1,0 +1,188 @@
+\documentclass[a4paper,12pt]{article} % Type of document
+
+%--------------------- Packages ------------------------
+
+
+\usepackage{titlesec} % For customizing chapter and section titles
+\usepackage{tocloft} % For customizing the table of contents
+
+
+\usepackage[spanish]{babel} % Document languaje
+\usepackage[utf8]{inputenc} % Special Characters
+\usepackage[section]{placeins} % For section Placement
+\usepackage{mathtools} % For math equations and symbols
+\usepackage{float} % For image placement
+\usepackage{graphicx} % For image placement
+\usepackage[justification=centering]{caption}
+\usepackage{subcaption}
+\usepackage{wallpaper}
+\usepackage{nomencl}
+%\makenomenclature
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{url}
+\usepackage{minted} %For showing code
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage[left=2.5cm,right=2.5cm,top=2cm,bottom=3.5cm]{geometry} % margin configuration
+\usepackage{lipsum}
+\usepackage{minted}
+\usepackage{titlesec} % For customizing chapter and section titles
+\usepackage{tocloft} % For customizing the table of contents
+\usepackage{hyperref} % For adding hyperlinks
+\usepackage{biblatex}
+\usepackage{csquotes}
+
+\addbibresource{refs.bib}
+
+
+% Customize chapter titles to match book document class
+%\titleformat{\chapter}[display]
+  %{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+%\titlespacing*{\chapter}
+%  {0pt}{-10pt}{10pt}
+
+  
+% Customize section titles to match book document class
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+
+
+
+\title{Document Title} %Document title
+
+\begin{document}
+%----------- Initialisation -------------------
+        
+
+\fancyhf{} %Clear Everything.
+\fancyheadoffset{1cm}
+\setlength{\headheight}{1.5cm}
+\fancyfoot[C]{\thepage} %Page Number
+\renewcommand{\headrulewidth}{1pt} %0pt for no rule, 2pt thicker etc...
+\renewcommand{\footrulewidth}{1pt}
+\fancyfoot[L]{Nombre del Proyecto} % BOTTOM LEFT
+\fancyfoot[R]{Fecha} % BOTTOM RIGHT
+\fancyhead[L]{\nouppercase{\leftmark}} % TOP LEFT
+\fancyhead[R]{} % TOP RIGHT
+\pagestyle{fancy} 
+
+
+\begin{titlepage}
+
+    \ThisLRCornerWallPaper{1}{logos/background.png}
+	
+    %\vspace{-2cm}
+    %\includegraphics[width=0.2\textwidth]{logos/um5logo.png}
+    %\hfill
+    \centering
+    %\hspace{-2cm}
+    \includegraphics[width=0.4\textwidth]{logos/telecom.png}\hfill
+	\includegraphics[width=0.4\textwidth]{logos/UPV.png}\par\vspace{1cm} %Logo
+	{\scshape\LARGE Escuela Técnica Superior de Ingeniería de Telecomunicación \par} %Nom de la Institución
+	\vspace{1.5cm}
+	{\scshape\Large Universidad Politècnica de València \par Nombre de la Asignatura \par} %Nombre de la asignatura
+	\vspace{1cm}
+    \rule{\linewidth}{0.2 mm} \par \vspace{0.4cm}
+	{\huge\bfseries Título del Documento \par}
+    \rule{\linewidth}{0.2 mm} \par \vspace{1.5cm}
+	\vspace{1cm}
+    
+	\begin{minipage}{0.5\textwidth} 
+            \begin{flushleft} \large 
+            \textbf{Alumnos:}\par 
+            Nombre Apellido Apellido \\
+		      Nombre Apellido Apellido \\ 
+		      Nombre Apellido Apellido \par %Sustituir por los nombres
+            \end{flushleft}
+        \end{minipage}
+        ~
+        \begin{minipage}{0.4\textwidth}
+            \begin{flushright} \large
+            \textbf{Profesor de la asignatura:} \par
+             Nombre Apellido Apellido \par
+            \end{flushright}
+        \end{minipage}
+        ~
+        \vfill
+        {\large \today \par}
+
+\end{titlepage}
+
+%--------------Primeras Paginas--------------
+
+%AGRADECIMIENTOS
+\clearpage % Asegura que el ancla esté en la página nueva
+\phantomsection 
+\addcontentsline{toc}{section}{Agradecimientos}
+%\section*{Agradecimientos}
+%Escribir agradecimientos aquí
+\input{Chapters/Agradecimientos} %...o separar en fichero 
+
+\newpage
+
+%ABSTRACT
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Resumen}
+\section*{Resumen} %Abstract
+%Escribir resumen aquí
+%\input{Chapters/Abstract} %...o separar en fichero 
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%LISTA DE ABREVIACIONES
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Lista de Abreviaciones}
+\section*{Lista de Abreviaciones}
+%Escribir lista de Abreviaciones aquí
+%\input{Chapters/Abreviaciones} %...o separar en fichero 
+
+%LISTA DE FIGURAS
+\phantomsection % Crea el ancla para el hipervínculo
+\addcontentsline{toc}{section}{\listfigurename} % Añade "Índice de figuras" al TOC
+\listoffigures
+
+%LISTA DE TABLAS
+\phantomsection
+\addcontentsline{toc}{section}{\listtablename} % Añade "Índice de tablas" al TOC
+\listoftables
+
+
+%------------ Cuerpo del documento ----------------
+\newpage
+\input{Chapters/intro.tex}
+\input{Chapters/chapter1}
+\input{Chapters/chapter2}
+\input{Chapters/chapter3}
+\newpage
+
+%CONCLUSION
+
+\clearpage % Asegura que el ancla esté en la página nueva
+\phantomsection 
+\addcontentsline{toc}{section}{Conclusión General}
+\section*{Conclusión General}
+% conclusion
+
+%REFERENCIAS
+\newpage
+\printbibliography[
+heading=bibintoc,
+title={Referencias}
+]
+
+%ANEXOS
+\newpage
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Anexos}
+\section*{Anexos}
+% add your sections here of each annexe
+
+\end{document}
